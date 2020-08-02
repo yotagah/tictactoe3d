@@ -1,38 +1,192 @@
-.App {
+:root {
+  --cube-size: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  font-family: sans-serif;
+  height: 100vh;
+  background-color: #ccc;
+  overflow: hidden;
+}
+
+/* New CSS */
+
+.container {
+  width: 600px;
+  height: 600px;
+  position: relative;
+  perspective: 1000px;
+  user-select: none;
+  background-color: #222;
+  overflow: hidden;
+  transform-origin: 0 0;
+  transition: background-color 0.2s;
+}
+
+.world {
+  transform-style: preserve-3d;
+  position: absolute;
+}
+
+.cube {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.cube .face {
+  margin: 0;
+  width: calc(var(--cube-size)*2);
+  height: calc(var(--cube-size)*2);
+  display: block;
+  position: absolute;
+  border: 1px solid #000;
+}
+
+.cube .front {
+  transform: rotateY(0deg) translateZ(var(--cube-size));
+}
+
+.cube .back {
+  transform: rotateX(180deg) translateZ(var(--cube-size));
+}
+
+.cube .right {
+  transform: rotateY(90deg) translateZ(var(--cube-size));
+}
+
+.cube .left {
+  transform: rotateY(-90deg) translateZ(var(--cube-size));
+}
+
+.cube .top {
+  transform: rotateX(90deg) translateZ(var(--cube-size));
+}
+
+.cube .bottom {
+  transform: rotateX(-90deg) translateZ(var(--cube-size));
+}
+
+.cube.p0 .face {
+  background-color: #fff;
+  opacity: 0.2;
+}
+
+.cube.p0:hover .face {
+  opacity: 0.5;
+}
+
+.cube.p1 .face {
+  background-color: #f00;
+}
+
+.cube.p2 .face {
+  background-color: #0f0;
+}
+
+.cube.p3 .face {
+  background-color: #00f;
+}
+
+.cube.p4 .face {
+  background-color: #f0f;
+}
+
+.cube.p5 .face {
+  background-color: #ff0;
+}
+
+.cube.p6 .face {
+  background-color: #0ff;
+}
+
+.next {
+  padding: 0.5rem 0.9rem;
+  border-radius: 15%;
+}
+
+.menu p {
+  margin: 1rem;
+}
+
+.next.p1 {
+  background-color: #f00;
+  color: #fff;
+}
+
+.next.p2 {
+  background-color: #0f0;
+}
+
+.next.p3 {
+  background-color: #00f;
+  color: #fff;
+}
+
+.next.p4 {
+  background-color: #f0f;
+  color: #fff;
+}
+
+.next.p5 {
+  background-color: #ff0;
+}
+
+.next.p6 {
+  background-color: #0ff;
+}
+
+.players {
+  margin-top: 3rem !important;
+}
+
+.winner {
+  font-size: 1.5rem;
+  line-height: 1.8;
+}
+
+.menu {
+  position: fixed;
+  background-color: #fff;
+  padding: 2rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.menu button {
+  padding: .75rem 1.5rem;
+  border: none;
+  border-radius: .5rem;
+  background-color: #777;
   color: white;
+  font-size: 1.2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.menu select {
+  width: 2.5rem;
+  height: 2rem;
+  padding: 0 .2rem;
+  font-size: 1rem;
+  margin-left: .5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (orientation: landscape) {
+  .menu {
+    top: 0;
+    bottom: 0;
+    right: 0;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (orientation: portrait) {
+  .menu {
+    bottom: 0;
+    right: 0;
+    left: 0;
   }
 }
