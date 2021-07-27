@@ -109,6 +109,8 @@ function App()
 
   const checkWinner = () => {
 
+    checkDraw();
+
     let planes = [];
 
     planes.push([
@@ -214,29 +216,13 @@ function App()
       ];
 
       possibleWaysToWin.forEach(cells => {
-        if(cells.every(cell => cell === 1)) {
-          setWinner(1);
+        for(let p = 1; p <= players; p++) {
+          if(cells.every(cell => cell === p)) {
+            setWinner(p);
+          }
         }
-        else if(cells.every(cell => cell === 2)) {
-          setWinner(2);
-        }
-        else if(cells.every(cell => cell === 3)) {
-          setWinner(3);
-        }
-        else if(cells.every(cell => cell === 4)) {
-          setWinner(4);
-        }
-        else if(cells.every(cell => cell === 5)) {
-          setWinner(5);
-        }
-        else if(cells.every(cell => cell === 6)) {
-          setWinner(6);
-        }
-      })
+      });
     });
-
-    if(!winner)
-      checkDraw();
   }
 
   const checkDraw = () => {
@@ -320,17 +306,15 @@ function App()
         {!winner &&
           <p>Next Player: <span className={`next p${currentPlayer}`}>{currentPlayer}</span></p>
         }
-        <p className="players">
-          Players:
-          <select value={prePlayers} onChange={handlePlayers}>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
-        </p>
-        <button onClick={resetGame}>Start New Game!</button>
+        <select value={prePlayers} onChange={handlePlayers}>
+          <option value="2">2 players</option>
+          <option value="3">3 players</option>
+          <option value="4">4 players</option>
+          <option value="5">5 players</option>
+          <option value="6">6 players</option>
+        </select>
+        <div className={`start-to-effect ${players === prePlayers ? 'invisible' : ''}`}>Start a new game to take effect!</div>
+        <button onClick={resetGame}>Start New Game</button>
       </div>
     </div>
   );

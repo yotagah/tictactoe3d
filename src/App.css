@@ -11,9 +11,9 @@
 body {
   display: grid;
   font-family: sans-serif;
-  height: 100vh;
   background-color: #ccc;
   overflow: hidden;
+  position: fixed;
 }
 
 /* New CSS */
@@ -142,10 +142,6 @@ body {
   background-color: #0ff;
 }
 
-.players {
-  margin-top: 3rem !important;
-}
-
 .winner {
   font-size: 1.5rem;
   line-height: 1.8;
@@ -158,21 +154,27 @@ body {
   text-align: center;
 }
 
-.menu button {
+.start-to-effect {
+  padding: 0.5rem;
+  color: #800;
+}
+
+.start-to-effect.invisible {
+  display: none;
+}
+
+.menu select, .menu button {
+  margin-top: 1rem;
   padding: .75rem 1.5rem;
   border: none;
   border-radius: .5rem;
   background-color: #777;
   color: white;
+  appearance: none;
+  width: 100%;
   font-size: 1.2rem;
-}
-
-.menu select {
-  width: 2.5rem;
-  height: 2rem;
-  padding: 0 .2rem;
-  font-size: 1rem;
-  margin-left: .5rem;
+  text-align: center;
+  text-align-last: center;
 }
 
 @media (orientation: landscape) {
@@ -180,6 +182,7 @@ body {
     top: 0;
     bottom: 0;
     right: 0;
+    width: 35%;
   }
 }
 
@@ -188,5 +191,16 @@ body {
     bottom: 0;
     right: 0;
     left: 0;
+    font-size: 3rem;
+  }
+
+  .menu button, .menu select {
+    padding: 1.5rem 3rem;
+    font-size: 3rem;
+  }
+
+  .winner {
+    font-size: 3rem;
+    line-height: 1.8;
   }
 }
